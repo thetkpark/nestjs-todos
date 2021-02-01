@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt'
+import * as bcrypt from 'bcrypt'
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
@@ -14,6 +14,7 @@ export class UserService {
 			const user = new User()
 			user.username = createUserDto.username
 			user.password = await bcrypt.hash(createUserDto.password, 10)
+
 			const createdUser = await this.userRepository.save(user)
 			return createdUser
 		} catch (error) {

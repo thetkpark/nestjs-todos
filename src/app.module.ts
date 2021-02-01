@@ -10,7 +10,6 @@ import { UserModule } from './users/users.module'
 	imports: [
 		ConfigModule.forRoot(),
 		TypeOrmModule.forRoot({
-			name: 'localhost_pg',
 			type: 'postgres',
 			host: process.env.PG_HOST,
 			username: process.env.PG_USERNAME,

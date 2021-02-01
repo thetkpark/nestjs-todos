@@ -11,6 +11,6 @@ export class User {
 	@Column()
 	password: string
 
-	@Column({ default: Date.now() })
+	@Column({ default: new Date(), type: 'timestamp' })
 	createAt: Date
 }
