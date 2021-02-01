@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  postgres: 
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    volumes:
+      - nest-todos-pg-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: 'supersecurepassword'
+      POSTGRES_DB: 'nest-todos'
+volumes:
+  nest-todos-pg-data:
