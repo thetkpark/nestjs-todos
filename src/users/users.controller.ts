@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post } from '@nestjs/common'
+import { Body, Controller, Get, Patch, Post } from '@nestjs/common'
+import { ChangePasswordReqDto } from './dto/change-password.dto'
 import { CreateUserDto } from './dto/create-user.dto'
 import { User } from './user.entity'
 import { UserService } from './users.service'
@@ -10,5 +11,10 @@ export class UserController {
 	@Post()
 	createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
 		return this.userService.createUser(createUserDto)
+	}
+
+	@Patch()
+	changePassword(@Body() changePasswordDto: ChangePasswordReqDto) {
+		return this.userService.changePassword(changePasswordDto)
 	}
 }
