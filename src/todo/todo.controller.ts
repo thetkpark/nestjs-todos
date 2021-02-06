@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Post, Request, UseGuards } from '@nestjs/common'
+import { Body, Controller, Get, Patch, Post, Request, UseGuards } from '@nestjs/common'
 import { Request as expressRequest } from 'express'
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
 import { CreateTodoDto } from './dto/create-todo.dto'
+import { UpdateTodoDto } from './dto/update-todo.dto'
 import { TodoService } from './todo.service'
 
 @Controller('todo')
@@ -17,7 +18,12 @@ export class TodoController {
 	@Post()
 	@UseGuards(JwtAuthGuard)
 	createTodo(@Request() req, @Body() createTodo: CreateTodoDto) {
-		console.log(req.user)
 		return this.todoService.createTodo(createTodo.title, req.user)
+	}
+
+	@Patch()
+	@UseGuards(JwtAuthGuard)
+	updateTodo(@Request() req, @Body() updateTodo: UpdateTodoDto) {
+		return this.todoService.updateTodo(updateTodo, req.user)
 	}
 }
