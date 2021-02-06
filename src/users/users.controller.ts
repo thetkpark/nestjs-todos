@@ -12,8 +12,7 @@ export class UserController {
 	@Get()
 	@UseGuards(JwtAuthGuard)
 	getUser(@Request() req) {
-		console.log(req.user)
-		return this.userService.findOne(req.user.sub)
+		return req.user
 	}
 
 	@Post()

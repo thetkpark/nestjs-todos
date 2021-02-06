@@ -6,6 +6,7 @@ import { AppService } from './app.service'
 import { User } from './users/user.entity'
 import { UserModule } from './users/users.module'
 import { AuthModule } from './auth/auth.module'
+import { TodoModule } from './todo/todo.module';
 
 @Module({
 	imports: [
@@ -22,7 +23,8 @@ import { AuthModule } from './auth/auth.module'
 			synchronize: true
 		}),
 		UserModule,
-		AuthModule
+		AuthModule,
+		TodoModule
 	],
 	controllers: [AppController],
 	providers: [AppService]
