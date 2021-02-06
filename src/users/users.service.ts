@@ -16,6 +16,10 @@ import { ChangePasswordReqDto, ChangePasswordResDto } from './dto/change-passwor
 export class UserService {
 	constructor(@InjectRepository(User) private userRepository: Repository<User>) {}
 
+	async findUserByUsername(username: string): Promise<User> {
+		return this.userRepository.findOne({ where: { username: username } })
+	}
+
 	async createUser(createUserDto: CreateUserDto): Promise<User> {
 		try {
 			const existingUser = await this.userRepository.findAndCount({ where: { username: createUserDto.username } })
