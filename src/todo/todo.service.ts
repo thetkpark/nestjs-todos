@@ -4,6 +4,7 @@ import { User } from 'src/users/user.entity'
 import { Repository } from 'typeorm'
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity'
 import { UpdateTodoDto } from './dto/update-todo.dto'
+import { DeleteTodoDto } from './dto/delete-todo.dto'
 import { Todo } from './todo.entity'
 
 @Injectable()
@@ -27,5 +28,10 @@ export class TodoService {
 		todo.title = updateTodo.title ? updateTodo.title : todo.title
 		todo.done = updateTodo.done ? updateTodo.done : todo.done
 		return this.todoRepository.save(todo)
+	}
+
+	async deleteTodo(deleteTodo: DeleteTodoDto, user: User): Promise<Todo[]> {
+		await this.todoRepository.delete({ id: deleteTodo.id, user })
+		return this.todoRepository.find({ where: { user } })
 	}
 }
