@@ -20,6 +20,10 @@ export class UserService {
 		return this.userRepository.findOne({ where: { username: username } })
 	}
 
+	async findOne(userId: number): Promise<User> {
+		return this.userRepository.findOne({ where: { id: userId } })
+	}
+
 	async createUser(createUserDto: CreateUserDto): Promise<User> {
 		try {
 			const existingUser = await this.userRepository.findAndCount({ where: { username: createUserDto.username } })

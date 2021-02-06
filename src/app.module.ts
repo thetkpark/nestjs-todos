@@ -5,11 +5,11 @@ import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { User } from './users/user.entity'
 import { UserModule } from './users/users.module'
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './auth/auth.module'
 
 @Module({
 	imports: [
-		ConfigModule.forRoot(),
+		ConfigModule.forRoot({ isGlobal: true }),
 		TypeOrmModule.forRoot({
 			type: 'postgres',
 			host: process.env.PG_HOST,
